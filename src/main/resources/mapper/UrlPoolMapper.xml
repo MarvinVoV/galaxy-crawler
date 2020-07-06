@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.galaxy.crawler.repo.mapper.UrlPoolMapper">
+    <resultMap type="UrlPoolEntity" id="result">
+        <result property="id" column="id" jdbcType="VARCHAR" javaType="int"/>
+        <result property="url" column="url" jdbcType="VARCHAR" javaType="String"/>
+        <result property="status" column="status" jdbcType="VARCHAR" javaType="String"/>
+        <result property="extInfo" column="ext_info" jdbcType="VARCHAR" javaType="String"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        <result property="modifiedTime" column="modified_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" statementType="PREPARED">
+        insert into url_pool (id, url, status, ext_info, create_time, modified_time)
+        values (NULL, #{url}, #{status}, #{extInfo}, #{createTime}, #{modifiedTime})
+    </insert>
+
+</mapper>

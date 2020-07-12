@@ -1,14 +1,20 @@
 package com.galaxy.crawler.core.spider;
 
 
-import com.galaxy.crawler.core.model.result.OutputResult;
+import com.galaxy.crawler.core.model.SpiderInput;
+import com.galaxy.crawler.core.model.SpiderOutput;
+
+import java.util.List;
 
 /**
  * @author hufeng
- * @version PageParser.java, v 0.1 2020/7/5 19:16 Exp $
+ * @version Spider.java, v 0.1 2020/7/5 19:16 Exp $
  */
 
-public interface Spider<T> {
+public interface Spider {
+    String getName();
 
-    OutputResult<T> parse(String html);
+    List<String> getStartUrls();
+
+    SpiderOutput parse(SpiderInput input);
 }

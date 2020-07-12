@@ -1,12 +1,6 @@
 package com.galaxy.crawler.schedule;
 
-import com.alibaba.fastjson.JSON;
-import com.galaxy.crawler.biz.beike.model.UrlInfo;
-import com.galaxy.crawler.biz.beike.spider.BeikeListPageSpider;
-import com.galaxy.crawler.core.domain.enums.UrlPoolStatus;
-import com.galaxy.crawler.core.model.result.OutputResult;
 import com.galaxy.crawler.repo.dao.UrlPoolDAO;
-import com.galaxy.crawler.repo.entity.UrlPoolEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.http.HttpEntity;
@@ -21,8 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author hufeng
@@ -34,8 +26,8 @@ import java.util.Map;
 public class ScheduledTasks {
     private int                 totalPage = 100;
     private int                 no        = 1;
-    @Autowired
-    private BeikeListPageSpider beikeListPageSpider;
+//    @Autowired
+//    private BeikeListPageSpider beikeListPageSpider;
     @Autowired
     private UrlPoolDAO          urlPoolDAO;
 
@@ -64,19 +56,19 @@ public class ScheduledTasks {
             HttpEntity httpEntity = response.getEntity();
             String html = EntityUtils.toString(httpEntity);
 
-            OutputResult<UrlInfo> outputResult = beikeListPageSpider.parse(html);
-            if (outputResult.isSuccess()) {
-                UrlInfo urlInfo = outputResult.getData();
-                UrlPoolEntity entity = new UrlPoolEntity();
-                entity.setUrl(urlInfo.getUrl());
-                Map<String, String> map = new HashMap<>();
-                map.put("detailId", urlInfo.getDetailId());
-                map.put("expoId", urlInfo.getExpoId());
-
-                entity.setExtInfo(JSON.toJSONString(map));
-                entity.setStatus(UrlPoolStatus.SUCCESS.getCode());
-                urlPoolDAO.save(entity);
-            }
+//            OutputResult<UrlInfo> outputResult = beikeListPageSpider.parse(html);
+//            if (outputResult.isSuccess()) {
+//                UrlInfo urlInfo = outputResult.getData();
+//                UrlPoolEntity entity = new UrlPoolEntity();
+//                entity.setUrl(urlInfo.getUrl());
+//                Map<String, String> map = new HashMap<>();
+//                map.put("detailId", urlInfo.getDetailId());
+//                map.put("expoId", urlInfo.getExpoId());
+//
+//                entity.setExtInfo(JSON.toJSONString(map));
+//                entity.setStatus(UrlPoolStatus.SUCCESS.getCode());
+//                urlPoolDAO.save(entity);
+//            }
         } catch (IOException e) {
             log.error("error", e);
         }

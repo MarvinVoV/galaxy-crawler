@@ -8,7 +8,7 @@ import com.galaxy.crawler.core.domain.Request;
  */
 
 public interface Scheduler {
-    void pushRequest(Request request);
+    void push(Request request);
 
-    Request popRequest();
+    Request poll();
 }

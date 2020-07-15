@@ -21,7 +21,7 @@ import java.util.concurrent.Executors;
  */
 public class Engine {
     private Map<String, Spider> spiderMap = new HashMap<>();
-    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private ExecutorService executorService = Executors.newFixedThreadPool(20);
     private EventBus eventBus = new EventBus();
 
     public Engine(String scanPackage) {
@@ -42,6 +42,7 @@ public class Engine {
     public void startup() {
         initRequests();
         // todo 根据spider配置 起对应的线程
+
 
 
             // todo 通知对应的downloader 下载
